@@ -537,21 +537,105 @@ a {
 }
 
 .contact-block {
-  max-width: 720px;
+  max-width: 760px;
+}
+
+/* Contact Profile Header: 1x1 Photo Next to Name */
+.contact-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 36px;
+}
+
+.contact-avatar-card {
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  background: #f4f4f4;
+  border: 1px solid var(--border-strong);
+  overflow: hidden;
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.contact-avatar-card:hover {
+  transform: translateY(-2px);
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.contact-avatar-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.contact-avatar-card:hover .contact-avatar-img {
+  transform: scale(1.05);
+}
+
+.contact-avatar-card .media-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+  color: #ffffff;
+}
+
+.contact-avatar-card:hover .media-hover-overlay {
+  opacity: 1;
+}
+
+.contact-avatar-card .expand-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.contact-avatar-card .expand-text {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.contact-profile-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .contact-name {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.85rem, 3.8vw, 2.85rem);
   font-weight: 700;
   letter-spacing: -0.02em;
+  line-height: 1.15;
   margin-bottom: 8px;
 }
 
 .contact-role {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
-  margin-bottom: 40px;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
 .contact-info-list {
@@ -775,5 +859,22 @@ a {
     width: 40px;
     height: 40px;
     font-size: 22px;
+  }
+
+  .contact-profile-header {
+    gap: 16px;
+  }
+
+  .contact-avatar-card {
+    width: 80px;
+    height: 80px;
+  }
+
+  .contact-name {
+    font-size: 1.6rem;
+  }
+
+  .contact-role {
+    font-size: 0.95rem;
   }
 }

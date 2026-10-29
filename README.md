@@ -53,8 +53,9 @@ All assets across the project directories are featured directly in the scroll fl
      - *Collaborative Short Film (Extended Cut)* — Full-length sequence
 
 5. **Contact & Information**
-   - **Name:** Jeric Jobli
-   - **Education:** 4th year Bachelor of Science in Information Technology
+   - **Photo:** Formal 1x1 portrait beside personal details (interactive with dark fullscreen lightbox view)
+   - **Name:** Jeric Andrei I. Jobli
+   - **Education:** 4th year Bachelor of Science in Information Technology (STI College Lipa)
    - **Email:** `jeric.andrei.i.jobli@gmail.com`
    - **Phone:** `09568928056`
    - **Capstone Link:** [rdhome.world](https://rdhome.world)
