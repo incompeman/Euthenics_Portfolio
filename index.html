@@ -14,7 +14,7 @@
 
   <!-- Anti-FOUC Theme Script (Immediate execution before render) -->
   <script>
-    (function() {
+    (function () {
       try {
         const stored = localStorage.getItem('theme');
         const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -24,7 +24,7 @@
         if (meta) meta.content = stored ? activeTheme : 'light dark';
         const themeColor = document.getElementById('theme-color-meta');
         if (themeColor) themeColor.content = activeTheme === 'dark' ? '#0a0a0c' : '#ffffff';
-      } catch (e) {}
+      } catch (e) { }
     })();
   </script>
 
@@ -59,10 +59,12 @@
         <div class="header-meta">
           <span>4TH YEAR BSIT</span>
         </div>
-        <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+        <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle dark mode"
+          title="Toggle theme">
           <span class="theme-toggle-icon-wrap" aria-hidden="true">
             <!-- Sun Icon -->
-            <svg class="theme-icon icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="theme-icon icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
               <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -74,7 +76,8 @@
               <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
             </svg>
             <!-- Moon Icon -->
-            <svg class="theme-icon icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="theme-icon icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
           </span>
@@ -127,8 +130,8 @@
             data-src="1x1_photo/734c9865-2e32-4d90-9804-9877132ffecd.jpg"
             data-caption="Jeric Andrei I. Jobli — Portrait">
             <div class="about-avatar-inner">
-              <img src="1x1_photo/734c9865-2e32-4d90-9804-9877132ffecd.jpg"
-                alt="Jeric Andrei I. Jobli" class="about-avatar-img" loading="lazy">
+              <img src="1x1_photo/734c9865-2e32-4d90-9804-9877132ffecd.jpg" alt="Jeric Andrei I. Jobli"
+                class="about-avatar-img" loading="lazy">
               <div class="media-hover-overlay">
                 <span class="expand-icon">&plus;</span>
                 <span class="expand-text">Enlarge</span>
@@ -143,7 +146,8 @@
         <div class="about-text-wrap">
           <h2 class="about-heading">About Me</h2>
           <p class="about-lead">
-            I am a 4th-year Bachelor of Science in Information Technology student at STI College Lipa with a passion for creative technology, specializing in augmented reality development, 3D visualization, and visual design.
+            I am a 4th-year Bachelor of Science in Information Technology student at STI College Lipa with a passion for
+            information technology, specializing in programming, 3D modeling, and animation.
           </p>
         </div>
       </div>
@@ -152,7 +156,7 @@
     <!-- SECTION: KEY SKILLS -->
     <section class="skills-section scroll-reveal" id="skills">
       <div class="section-divider">
-        <span class="section-category">EXPERTISE / KEY SKILLS</span>
+        <span class="section-category">SKILLS</span>
       </div>
 
       <div class="skills-block">
@@ -294,12 +298,12 @@
     <section class="project-section scroll-reveal" id="spatial">
       <div class="section-divider">
         <span class="section-number">02</span>
-        <span class="section-category">3D VISUALIZATION / ARCHITECTURAL LIGHTING</span>
+        <span class="section-category">3D VISUALIZATION / LIGHTING</span>
       </div>
 
       <div class="project-header">
         <h2 class="project-title">
-          Modern Kitchen &amp; Dining Space: Day &amp; Night Lighting Study
+          Modern Kitchen &amp; Dining Space: Day &amp; Night Lighting
         </h2>
       </div>
 
@@ -379,18 +383,17 @@
     <section class="project-section scroll-reveal" id="graphics">
       <div class="section-divider">
         <span class="section-number">03</span>
-        <span class="section-category">VISUAL DESIGN / COLLAGE, INFOGRAPHIC &amp; IDENTITY</span>
+        <span class="section-category">VISUAL DESIGN / GRAPHICS</span>
       </div>
 
       <div class="project-header">
         <h2 class="project-title">
-          Digital Graphics &amp; Brand Identity
+          Digital Graphics
         </h2>
       </div>
 
       <p class="project-lead">
-        Explorations across mixed-media digital collages, tactical gaming infographic design, and retro pixel typography
-        branding.
+        Graphics created during "Introduction to Digital Graphics Design" course.
       </p>
 
       <div class="media-grid media-grid-graphics">
@@ -549,8 +552,8 @@
             data-src="1x1_photo/734c9865-2e32-4d90-9804-9877132ffecd.jpg"
             data-caption="Jeric Andrei I. Jobli — 1x1 Portrait">
             <div class="contact-avatar-wrapper">
-              <img src="1x1_photo/734c9865-2e32-4d90-9804-9877132ffecd.jpg"
-                alt="Jeric Andrei I. Jobli" class="contact-avatar-img">
+              <img src="1x1_photo/734c9865-2e32-4d90-9804-9877132ffecd.jpg" alt="Jeric Andrei I. Jobli"
+                class="contact-avatar-img">
               <div class="media-hover-overlay">
                 <span class="expand-icon">&plus;</span>
                 <span class="expand-text">Enlarge</span>
