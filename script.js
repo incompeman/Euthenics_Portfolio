@@ -207,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lightbox.classList.add('active');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    document.body.classList.add('lightbox-open');
 
     // Focus close button for accessibility
     if (lightboxClose) lightboxClose.focus();
@@ -226,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lightbox.classList.remove('active');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    document.body.classList.remove('lightbox-open');
   }
 
   // Bind click event to all media cards
@@ -264,4 +266,102 @@ document.addEventListener('DOMContentLoaded', () => {
       closeLightbox();
     }
   });
+
+  // =========================================================================
+  // 6. Custom Minimalist Fluid Cursor
+  // =========================================================================
+  const cursorDot = document.getElementById('cursor-dot');
+  const cursorRing = document.getElementById('cursor-ring');
+
+  // Activate only for fine pointer devices with hover capability
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (hasFinePointer && cursorDot && cursorRing) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+    let cursorVisible = false;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const lerpFactor = reducedMotion ? 1 : 0.18;
+
+    function renderCursor() {
+      // Smooth linear interpolation for ring follower
+      ringX += (mouseX - ringX) * lerpFactor;
+      ringY += (mouseY - ringY) * lerpFactor;
+
+      cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+      cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+
+      requestAnimationFrame(renderCursor);
+    }
+
+    window.addEventListener('pointermove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      if (!cursorVisible) {
+        ringX = mouseX;
+        ringY = mouseY;
+        cursorVisible = true;
+        cursorDot.classList.add('visible');
+        cursorRing.classList.add('visible');
+        requestAnimationFrame(renderCursor);
+      }
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', () => {
+      cursorDot.classList.remove('visible');
+      cursorRing.classList.remove('visible');
+    });
+
+    document.addEventListener('mouseenter', () => {
+      cursorDot.classList.add('visible');
+      cursorRing.classList.add('visible');
+    });
+
+    document.addEventListener('mousedown', () => {
+      cursorDot.classList.add('clicking');
+      cursorRing.classList.add('clicking');
+    });
+
+    document.addEventListener('mouseup', () => {
+      cursorDot.classList.remove('clicking');
+      cursorRing.classList.remove('clicking');
+    });
+
+    // Dynamic state delegation on hover
+    document.addEventListener('mouseover', (e) => {
+      const target = e.target;
+      if (!target) return;
+
+      const mediaCard = target.closest('.media-card');
+      const interactiveEl = target.closest('a, button, .hyperlink-pill, .theme-toggle-btn, .lightbox-close, .text-link, .skill-item');
+
+      if (mediaCard) {
+        cursorRing.classList.add('media-active');
+        cursorDot.classList.add('media-active');
+      } else if (interactiveEl) {
+        cursorRing.classList.add('hover-active');
+        cursorDot.classList.add('hover-active');
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const target = e.target;
+      if (!target) return;
+
+      const mediaCard = target.closest('.media-card');
+      const interactiveEl = target.closest('a, button, .hyperlink-pill, .theme-toggle-btn, .lightbox-close, .text-link, .skill-item');
+
+      if (mediaCard) {
+        cursorRing.classList.remove('media-active');
+        cursorDot.classList.remove('media-active');
+      }
+      if (interactiveEl) {
+        cursorRing.classList.remove('hover-active');
+        cursorDot.classList.remove('hover-active');
+      }
+    });
+  }
 });

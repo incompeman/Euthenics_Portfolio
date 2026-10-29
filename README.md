@@ -14,15 +14,18 @@ A minimal, high-contrast black-and-white editorial portfolio built from scratch 
   2. Clicking any picture or video to open it in a dark, fullscreen enlarged view with an **✕** exit button.
   3. The tactile header theme toggle button (**LIGHT** / **DARK**).
 - **Subtle Editorial Scroll Animations**: Smooth fade-and-slide-up entrances as sections and media scroll into view, paired with a top scroll-progress indicator line.
+- **Custom Minimalist Fluid Cursor**: Precision pinpoint dot paired with a trailing follower ring using 60/120fps physics interpolation (`requestAnimationFrame`), dynamic expansion over links/buttons and media cards, click-press feedback, and automatic fallback for touch devices.
 - **Silent Video Hover Previews**: Motion videos loop silently on hover in the scroll stream; clicking them expands into a dark fullscreen theater with playback controls and sound.
 
 ---
 
-## 📁 Included Projects & Media
+## 📁 Included Sections & Projects
 
-All assets across the project directories are featured directly in the scroll flow:
+All profile details and project assets are featured directly in the scroll flow:
 
-1. **Capstone Project**
+1. **About Me**: Brief professional background and mission statement as an aspiring IT professional and creative technologist.
+2. **Key Skills**: Bulleted breakdown of core technical competencies across Programming Languages, Graphic Design, 3D Modeling/Animation, and Database Management.
+3. **Capstone Project**
    - **Full Title:** *RDHome: A Mobile Augmented Reality Virtual Furniture Preview Application for RDH Furniture Trading*
    - **Hyperlink:** [rdhome.world](https://rdhome.world)
    - **Media Items:**

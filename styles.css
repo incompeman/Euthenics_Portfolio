@@ -445,6 +445,101 @@ a {
 }
 
 /* ==========================================================================
+   About Me & Key Skills Sections
+   ========================================================================== */
+
+.about-section {
+  padding: 80px 0 64px 0;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.about-heading,
+.skills-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.85rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.about-lead {
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 900px;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+.skills-section {
+  padding: 64px 0 80px 0;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 900px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-smooth), 
+              transform var(--transition-smooth), 
+              box-shadow var(--transition-smooth), 
+              background-color var(--transition-smooth);
+}
+
+.skill-item:hover {
+  border-color: var(--border-card-hover);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-subtle);
+}
+
+.skill-bullet {
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.skill-content {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.skill-category {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.skill-values {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
    Project Sections
    ========================================================================== */
 
@@ -986,6 +1081,132 @@ a {
 }
 
 /* ==========================================================================
+   Custom Minimalist Cursor
+   ========================================================================== */
+
+/* Only activate custom cursor on desktop devices with hover & fine pointer */
+@media (hover: hover) and (pointer: fine) {
+  body, 
+  a, 
+  button, 
+  .media-card, 
+  .hyperlink-pill, 
+  .text-link,
+  .lightbox-close,
+  .theme-toggle-btn {
+    cursor: none !important;
+  }
+
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000000;
+    opacity: 0;
+    will-change: transform, width, height, opacity;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease, 
+                border-color 0.25s ease, 
+                background-color 0.25s ease,
+                width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.25s ease;
+  }
+
+  /* Active visible state when cursor is on the window */
+  .custom-cursor-dot.visible,
+  .custom-cursor-ring.visible {
+    opacity: 1;
+  }
+
+  /* Inner Precision Pinpoint Dot */
+  .custom-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--text-primary);
+  }
+
+  /* Outer Follower Ring */
+  .custom-cursor-ring {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--text-primary);
+    background: transparent;
+    opacity: 0.6;
+  }
+
+  /* Hover State: Clickable elements (links, buttons, pills) */
+  .custom-cursor-ring.hover-active {
+    width: 50px;
+    height: 50px;
+    border-width: 1.5px;
+    border-color: var(--text-primary);
+    background: rgba(128, 128, 128, 0.08);
+    opacity: 0.9;
+  }
+
+  .custom-cursor-dot.hover-active {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Media Card Hover State: Enlarged preview aura */
+  .custom-cursor-ring.media-active {
+    width: 62px;
+    height: 62px;
+    border-width: 1.5px;
+    border-color: var(--text-primary);
+    background: rgba(128, 128, 128, 0.12);
+    opacity: 1;
+  }
+
+  .custom-cursor-dot.media-active {
+    width: 4px;
+    height: 4px;
+    opacity: 0.8;
+  }
+
+  /* Click / Active Press Feedback */
+  .custom-cursor-ring.clicking {
+    width: 24px;
+    height: 24px;
+    border-color: var(--text-primary);
+    background: rgba(128, 128, 128, 0.25);
+    opacity: 1;
+  }
+
+  .custom-cursor-dot.clicking {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Lightbox Active Adaptation */
+  body.lightbox-open .custom-cursor-ring {
+    border-color: rgba(255, 255, 255, 0.75);
+  }
+
+  body.lightbox-open .custom-cursor-dot {
+    background: #ffffff;
+  }
+
+  body.lightbox-open .custom-cursor-ring.hover-active {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Touch & Mobile Fallback: Hide completely */
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
    Responsive Media Queries
    ========================================================================== */
 
@@ -1002,6 +1223,11 @@ a {
   }
 
   .hero-section {
+    padding: 56px 0;
+  }
+
+  .about-section,
+  .skills-section {
     padding: 56px 0;
   }
 
@@ -1072,5 +1298,20 @@ a {
 
   .contact-role {
     font-size: 0.95rem;
+  }
+
+  .about-heading,
+  .skills-heading {
+    font-size: 1.85rem;
+  }
+
+  .skill-item {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .skill-content {
+    flex-direction: column;
+    gap: 4px;
   }
 }
