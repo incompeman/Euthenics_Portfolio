@@ -6,11 +6,13 @@ A minimal, high-contrast black-and-white editorial portfolio built from scratch 
 
 ## 🖤 Design Philosophy & Experience
 
-- **Minimalist White Canvas**: Crisp white background with bold jet-black typography and hairline rules.
+- **Minimalist Dual-Palette Canvas (Light & Dark Modes)**: Crisp editorial white canvas and deep obsidian dark canvas (`#0a0a0c`) with stark high-contrast typography and razor-sharp hairline borders.
+- **Adaptive Dark Mode & System Preference Sync**: Follows the user's OS color scheme preference automatically with an editorial theme toggle in the header, zero-FOUC inline loading, and cross-tab synchronization.
 - **Scroll-Only Exploration (Zero Modals)**: Everything is laid out directly in a continuous, flowing scroll experience. No tabs to click, no popups to close, no hidden cards.
 - **The Only Clickables**:
   1. Hyperlinks to the capstone project: **[rdhome.world](https://rdhome.world)**
   2. Clicking any picture or video to open it in a dark, fullscreen enlarged view with an **✕** exit button.
+  3. The tactile header theme toggle button (**LIGHT** / **DARK**).
 - **Subtle Editorial Scroll Animations**: Smooth fade-and-slide-up entrances as sections and media scroll into view, paired with a top scroll-progress indicator line.
 - **Silent Video Hover Previews**: Motion videos loop silently on hover in the scroll stream; clicking them expands into a dark fullscreen theater with playback controls and sound.
 

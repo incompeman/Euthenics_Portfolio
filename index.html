@@ -9,6 +9,25 @@
   <meta name="author" content="Jeric Andrei I. Jobli">
   <title>Jeric Andrei I. Jobli — Portfolio</title>
 
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" id="theme-color-meta">
+
+  <!-- Anti-FOUC Theme Script (Immediate execution before render) -->
+  <script>
+    (function() {
+      try {
+        const stored = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const activeTheme = stored || (systemDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', activeTheme);
+        const meta = document.querySelector('meta[name="color-scheme"]');
+        if (meta) meta.content = stored ? activeTheme : 'light dark';
+        const themeColor = document.getElementById('theme-color-meta');
+        if (themeColor) themeColor.content = activeTheme === 'dark' ? '#0a0a0c' : '#ffffff';
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- High-Contrast Editorial Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,8 +51,31 @@
         <span class="brand-title">JERIC ANDREI I. JOBLI</span>
         <span class="brand-sub">PORTFOLIO</span>
       </div>
-      <div class="header-meta">
-        <span>4TH YEAR BSIT</span>
+      <div class="header-actions">
+        <div class="header-meta">
+          <span>4TH YEAR BSIT</span>
+        </div>
+        <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span class="theme-toggle-icon-wrap" aria-hidden="true">
+            <!-- Sun Icon -->
+            <svg class="theme-icon icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <!-- Moon Icon -->
+            <svg class="theme-icon icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-label" id="theme-toggle-text">THEME</span>
+        </button>
       </div>
     </div>
   </header>

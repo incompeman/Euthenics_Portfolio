@@ -15,6 +15,92 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
+  // Theme Toggle (Light / Dark) & Color-Scheme Synchronization
+  // =========================================================================
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themeToggleText = document.getElementById('theme-toggle-text');
+  const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]');
+  const themeColorMeta = document.getElementById('theme-color-meta');
+
+  function getSystemPreference() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function getActiveTheme() {
+    return document.documentElement.getAttribute('data-theme') ||
+           localStorage.getItem('theme') ||
+           getSystemPreference();
+  }
+
+  function updateThemeUI(theme) {
+    if (!themeToggleBtn) return;
+    const isDark = theme === 'dark';
+    const nextTheme = isDark ? 'light' : 'dark';
+    
+    // Accessibility labels
+    themeToggleBtn.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+    themeToggleBtn.setAttribute('title', `Current theme: ${theme.toUpperCase()} (Click to switch to ${nextTheme.toUpperCase()})`);
+    
+    if (themeToggleText) {
+      themeToggleText.textContent = isDark ? 'DARK' : 'LIGHT';
+    }
+
+    if (themeColorMeta) {
+      themeColorMeta.content = isDark ? '#0a0a0c' : '#ffffff';
+    }
+  }
+
+  function setTheme(newTheme, isUserAction = false) {
+    const systemPref = getSystemPreference();
+
+    if (isUserAction) {
+      // Per Modern Web Guidance for two-state toggles:
+      // If user toggles to match their system preference, remove stored override.
+      // If user toggles to differ from system preference, store override.
+      if (newTheme === systemPref) {
+        localStorage.removeItem('theme');
+        if (colorSchemeMeta) colorSchemeMeta.content = 'light dark';
+      } else {
+        localStorage.setItem('theme', newTheme);
+        if (colorSchemeMeta) colorSchemeMeta.content = newTheme;
+      }
+    } else {
+      const stored = localStorage.getItem('theme');
+      if (colorSchemeMeta) colorSchemeMeta.content = stored ? stored : 'light dark';
+    }
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    updateThemeUI(newTheme);
+  }
+
+  // Initialize UI based on current rendered state
+  updateThemeUI(getActiveTheme());
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const current = getActiveTheme();
+      const target = current === 'dark' ? 'light' : 'dark';
+      setTheme(target, true);
+    });
+  }
+
+  // React to OS-level preference changes if user hasn't explicitly overridden
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      const newSystemTheme = e.matches ? 'dark' : 'light';
+      setTheme(newSystemTheme, false);
+    }
+  });
+
+  // Cross-tab synchronization
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'theme') {
+      const active = e.newValue || getSystemPreference();
+      setTheme(active, false);
+    }
+  });
+
+  // =========================================================================
   // 2. Scroll Progress Bar
   // =========================================================================
   const progressBar = document.getElementById('scroll-progress');
